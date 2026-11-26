@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Sonali Chauhan, B.Tech Mathematics and Computing student at MITS, Gwalior.">
+  <title>Sonali Chauhan | Portfolio</title>
+
+  <!-- Bootstrap 5 + Icons + Fonts (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #14213d;
+      --ink-soft: #4a5775;
+      --paper: #f6f8fc;
+      --white: #ffffff;
+      --accent: #2f5bea;
+      --accent-dark: #2447c0;
+      --teal: #0e9f9f;
+      --line: #dde3ef;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: 1.08rem;
+      line-height: 1.65;
+    }
+    h1, h2, h3, h4, h5, .navbar-brand { font-family: "Sora", sans-serif; letter-spacing: -0.01em; }
+    a { color: var(--accent); }
+    :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+    /* Navbar */
+    .navbar { background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .navbar-brand { font-weight: 700; color: var(--ink); }
+    .navbar-brand span { color: var(--accent); }
+    .nav-link { color: var(--ink-soft); font-weight: 500; }
+    .nav-link:hover, .nav-link.active { color: var(--accent); }
+
+    /* Hero: graph-paper background */
+    .hero {
+      padding: 9rem 0 6rem;
+      background-color: var(--white);
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 36px 36px;
+      position: relative;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: auto 0 0 0; height: 120px;
+      background: linear-gradient(transparent, var(--paper));
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 700; line-height: 1.08; }
+    .hero .role { font-family: "Sora", sans-serif; font-size: 1.25rem; color: var(--accent); font-weight: 600; }
+    .hero .lead { color: var(--ink-soft); max-width: 36rem; }
+    .btn-main { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; padding: .7rem 1.6rem; border-radius: 8px; }
+    .btn-main:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+    .btn-ghost { border: 2px solid var(--ink); color: var(--ink); font-weight: 600; padding: .65rem 1.6rem; border-radius: 8px; }
+    .btn-ghost:hover { background: var(--ink); color: #fff; }
+
+    /* Avatar */
+    .avatar-wrap { position: relative; width: 250px; height: 250px; margin: 0 auto; }
+    .avatar {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: var(--ink); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Sora", sans-serif; font-weight: 700; font-size: 5rem; letter-spacing: .04em;
+      border: 6px solid var(--white);
+      box-shadow: 0 0 0 3px var(--accent);
+    }
+    .avatar-badge {
+      position: absolute; right: -18px; bottom: 18px;
+      background: var(--white); border: 1px solid var(--line); border-radius: 10px;
+      padding: .35rem .8rem; font-size: .95rem; font-weight: 600;
+    }
+    .avatar-badge i { color: var(--teal); }
+
+    /* Sections */
+    section { padding: 5.5rem 0; }
+    .section-title { font-weight: 700; font-size: clamp(1.7rem, 3.5vw, 2.3rem); margin-bottom: .4rem; }
+    .section-sub { color: var(--ink-soft); margin-bottom: 2.8rem; max-width: 40rem; }
+    .bg-white-section { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    /* Cards */
+    .card-x { background: var(--white); border: 1px solid var(--line); border-radius: 12px; height: 100%; transition: border-color .2s, transform .2s; }
+    .card-x:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .icon-box {
+      width: 48px; height: 48px; border-radius: 10px; background: #e8eefd; color: var(--accent);
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem;
+    }
+    .info-list li { padding: .45rem 0; border-bottom: 1px dashed var(--line); display: flex; gap: .6rem; }
+    .info-list li:last-child { border-bottom: 0; }
+    .info-list i { color: var(--accent); }
+
+    /* Education timeline */
+    .timeline { border-left: 3px solid var(--accent); padding-left: 1.6rem; position: relative; }
+    .timeline .dot { position: absolute; left: -11px; top: 6px; width: 19px; height: 19px; background: var(--white); border: 4px solid var(--accent); border-radius: 50%; }
+    .chip { display: inline-block; background: #e8eefd; color: var(--accent-dark); font-weight: 600; font-size: .9rem; padding: .2rem .75rem; border-radius: 99px; margin: 0 .35rem .35rem 0; }
+    .chip.teal { background: #dff4f4; color: #0a7373; }
+
+    /* Skills */
+    .skill-card { text-align: center; padding: 1.5rem 1rem; }
+    .skill-card i { font-size: 2rem; color: var(--accent); }
+    .skill-card h3 { font-size: 1.05rem; margin: .6rem 0 .2rem; }
+    .skill-card small { color: var(--ink-soft); }
+    .bar { height: 6px; background: var(--line); border-radius: 6px; margin-top: .8rem; overflow: hidden; }
+    .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--teal)); border-radius: 6px; }
+
+    /* Projects */
+    .project-card .card-body { padding: 1.6rem; display: flex; flex-direction: column; }
+    .project-card h3 { font-size: 1.2rem; }
+    .project-card p { color: var(--ink-soft); }
+    .project-card .tags { margin-top: auto; padding-top: .5rem; }
+
+    /* Contact */
+    .contact-link { display: flex; align-items: center; gap: .9rem; text-decoration: none; color: var(--ink); padding: 1rem 1.2rem; }
+    .contact-link i { font-size: 1.6rem; color: var(--accent); }
+    .form-control { border-radius: 8px; border-color: var(--line); padding: .7rem .9rem; }
+    .form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 .2rem rgba(47,91,234,.15); }
+
+    /* Footer */
+    footer { background: var(--ink); color: #c8d1e6; padding: 2.5rem 0; }
+    footer a { color: #fff; text-decoration: none; }
+    footer a:hover { color: #9fb6ff; }
+
+    @media (max-width: 767px) {
+      .hero { padding: 7rem 0 4rem; text-align: center; }
+      .hero .lead { margin-inline: auto; }
+      .avatar-wrap { width: 200px; height: 200px; margin-bottom: 2rem; }
+      .avatar { font-size: 4rem; }
+      section { padding: 4rem 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .card-x { transition: none; }
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="90" tabindex="0">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="#home">Sonali<span>.</span>Chauhan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="home">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-md-7 order-2 order-md-1">
+          <p class="role mb-2">Full Stack Developer in the making</p>
+          <h1>Hi, I'm Sonali Chauhan.</h1>
+          <p class="lead mt-3">Third-year B.Tech Mathematics and Computing student at MITS, Gwalior. I build web applications and enjoy turning mathematical thinking into working software.</p>
+          <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center justify-content-md-start">
+            <a href="#projects" class="btn btn-main">View my projects</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          </div>
+        </div>
+        <div class="col-md-5 order-1 order-md-2">
+          <div class="avatar-wrap">
+            <div class="avatar" role="img" aria-label="Avatar with initials S C">SC</div>
+            <div class="avatar-badge"><i class="bi bi-mortarboard-fill"></i> MITS, Gwalior</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About me</h2>
+      <p class="section-sub">A quick introduction to who I am and what I work on.</p>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <p>I'm Sonali Chauhan, a Mathematics and Computing student who likes building things that work end to end: a clean interface, a reliable server and a database that holds it all together.</p>
+          <p>My mathematics background helps me break problems into logical steps, and my interest in Machine Learning keeps me curious about how data can make applications smarter. I'm currently building my Full Stack skills with HTML, CSS, JavaScript, React.js, Node.js and MongoDB.</p>
+          <p>Outside coursework, I serve as Secretary of the Mathematics Club at MITS, where I help organise events and bring students together around problem solving.</p>
+        </div>
+        <div class="col-lg-5">
+          <div class="card-x p-4">
+            <ul class="list-unstyled info-list mb-0">
+              <li><i class="bi bi-person-fill"></i><span><strong>Name:</strong> Sonali Chauhan</span></li>
+              <li><i class="bi bi-building"></i><span><strong>College:</strong> MITS, Gwalior</span></li>
+              <li><i class="bi bi-journal-bookmark-fill"></i><span><strong>Degree:</strong> B.Tech Mathematics and Computing</span></li>
+              <li><i class="bi bi-calendar3"></i><span><strong>Year:</strong> Third Year, Fifth Semester</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="bg-white-section">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <p class="section-sub">My current academic path.</p>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="timeline">
+            <span class="dot"></span>
+            <h3 class="h5 mb-1">B.Tech in Mathematics and Computing</h3>
+            <p class="mb-2 text-secondary">Madhav Institute of Technology and Science (MITS), Gwalior</p>
+            <p class="mb-3"><span class="chip">Third Year</span><span class="chip">Fifth Semester</span><span class="chip teal">Currently pursuing</span></p>
+            <p>The programme combines core mathematics with computer science. It covers areas such as algorithms, data structures, probability and statistics, and programming, which form the base for my work in web development and Machine Learning.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical skills</h2>
+      <p class="section-sub">Technologies I use to build and learn.</p>
+      <div class="row g-4 row-cols-2 row-cols-md-3 row-cols-lg-4">
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-filetype-html"></i><h3>HTML</h3><small>Structure and semantics</small><div class="bar"><span style="width:90%"></span></div></div></div>
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-filetype-css"></i><h3>CSS</h3><small>Layouts and responsive design</small><div class="bar"><span style="width:85%"></span></div></div></div>
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-filetype-js"></i><h3>JavaScript</h3><small>Interactivity and logic</small><div class="bar"><span style="width:78%"></span></div></div></div>
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-braces-asterisk"></i><h3>React.js</h3><small>Component-based UIs</small><div class="bar"><span style="width:70%"></span></div></div></div>
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-hdd-network"></i><h3>Node.js</h3><small>Server-side JavaScript</small><div class="bar"><span style="width:70%"></span></div></div></div>
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-database"></i><h3>MongoDB</h3><small>NoSQL databases</small><div class="bar"><span style="width:68%"></span></div></div></div>
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-filetype-py"></i><h3>Python</h3><small>Scripting and data work</small><div class="bar"><span style="width:82%"></span></div></div></div>
+        <div class="col"><div class="card-x skill-card"><i class="bi bi-cpu"></i><h3>Machine Learning</h3><small>Models and data analysis</small><div class="bar"><span style="width:65%"></span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="bg-white-section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Selected work that shows how I put my skills into practice.</p>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <article class="card-x project-card"><div class="card-body">
+            <div class="icon-box"><i class="bi bi-mortarboard"></i></div>
+            <h3>Student Academic Portal</h3>
+            <p>A portal where students can view their courses, attendance and results in one place, with a simple dashboard for quick access.</p>
+            <div class="tags"><span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">MongoDB</span></div>
+          </div></article>
+        </div>
+        <div class="col-md-6">
+          <article class="card-x project-card"><div class="card-body">
+            <div class="icon-box"><i class="bi bi-book"></i></div>
+            <h3>Library Management System</h3>
+            <p>A system to catalogue books, issue and return them, and track members and due dates, replacing manual record keeping.</p>
+            <div class="tags"><span class="chip">Python</span><span class="chip">MongoDB</span><span class="chip">HTML/CSS</span></div>
+          </div></article>
+        </div>
+        <div class="col-md-6">
+          <article class="card-x project-card"><div class="card-body">
+            <div class="icon-box"><i class="bi bi-shield-lock"></i></div>
+            <h3>Secure Authentication System</h3>
+            <p>A login and registration system with hashed passwords, token-based sessions and protected routes to keep user data safe.</p>
+            <div class="tags"><span class="chip">Node.js</span><span class="chip">JWT</span><span class="chip">MongoDB</span></div>
+          </div></article>
+        </div>
+        <div class="col-md-6">
+          <article class="card-x project-card"><div class="card-body">
+            <div class="icon-box"><i class="bi bi-pencil-square"></i></div>
+            <h3>Blogging Platform</h3>
+            <p>A platform where users can write, edit and publish posts, browse articles by author and interact through a clean reading experience.</p>
+            <div class="tags"><span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">MongoDB</span></div>
+          </div></article>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a class="btn btn-ghost" href="https://github.com/sonali-chauhan8" target="_blank" rel="noopener"><i class="bi bi-github me-2"></i>See more on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section id="leadership">
+    <div class="container">
+      <h2 class="section-title">Leadership</h2>
+      <p class="section-sub">Roles where I help others and lead from the front.</p>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card-x p-4 d-flex flex-column flex-sm-row gap-3">
+            <div class="icon-box flex-shrink-0 mb-0"><i class="bi bi-people-fill"></i></div>
+            <div>
+              <h3 class="h5 mb-1">Secretary, Mathematics Club, MITS</h3>
+              <p class="text-secondary mb-2">Madhav Institute of Technology and Science, Gwalior</p>
+              <p class="mb-0">I coordinate the club's activities, work with fellow members and the team to plan events, and encourage students to explore mathematics beyond the classroom.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-white-section">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Want to collaborate or just say hello? Reach out through any of these.</p>
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="d-grid gap-3">
+            <a class="card-x contact-link" href="https://github.com/sonali-chauhan8" target="_blank" rel="noopener">
+              <i class="bi bi-github"></i><span><strong>GitHub</strong><br><small class="text-secondary">github.com/sonali-chauhan8</small></span>
+            </a>
+            <a class="card-x contact-link" href="https://www.linkedin.com/in/sonali-chauhan-462bba329/" target="_blank" rel="noopener">
+              <i class="bi bi-linkedin"></i><span><strong>LinkedIn</strong><br><small class="text-secondary">Sonali Chauhan</small></span>
+            </a>
+            <div class="card-x contact-link">
+              <i class="bi bi-geo-alt-fill"></i><span><strong>Location</strong><br><small class="text-secondary">MITS, Gwalior, Madhya Pradesh</small></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <form id="contactForm" class="card-x p-4 needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label fw-semibold">Your name</label>
+                <input type="text" class="form-control" id="name" required>
+                <div class="invalid-feedback">Enter your name.</div>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-semibold">Your email</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">Enter a valid email address.</div>
+              </div>
+              <div class="col-12">
+                <label for="message" class="form-label fw-semibold">Message</label>
+                <textarea class="form-control" id="message" rows="4" required></textarea>
+                <div class="invalid-feedback">Write a short message.</div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-main">Send message</button>
+              </div>
+              <div class="col-12">
+                <div id="formSuccess" class="alert alert-success d-none mb-0" role="status">Thanks! Your message is ready. (This demo form has no backend, so nothing is sent.)</div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <span>&copy; <span id="year"></span> Sonali Chauhan. B.Tech Mathematics and Computing, MITS Gwalior.</span>
+      <span class="d-flex gap-3 fs-5">
+        <a href="https://github.com/sonali-chauhan8" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/sonali-chauhan-462bba329/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="#home" aria-label="Back to top"><i class="bi bi-arrow-up-circle"></i></a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Close mobile menu after clicking a link
+    document.querySelectorAll('#navMenu .nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        var menu = document.getElementById('navMenu');
+        if (menu.classList.contains('show')) {
+          bootstrap.Collapse.getOrCreateInstance(menu).hide();
+        }
+      });
+    });
+
+    // Contact form validation (front-end only)
+    var form = document.getElementById('contactForm');
+    var success = document.getElementById('formSuccess');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      success.classList.add('d-none');
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+      form.reset();
+      form.classList.remove('was-validated');
+      success.classList.remove('d-none');
+    });
+  </script>
+</body>
+</html>
